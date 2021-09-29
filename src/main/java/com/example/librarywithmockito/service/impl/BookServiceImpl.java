@@ -64,4 +64,9 @@ public class BookServiceImpl implements BookService {
         }
         bookRepository.delete(book);
     }
+
+    @Override
+    public Optional<Book> getBookByIsbn(String isbn) {
+        return Optional.empty();
+    }
 }

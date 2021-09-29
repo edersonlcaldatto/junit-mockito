@@ -60,20 +60,5 @@ public class BookController {
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    //*******/////
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiErros handleValidationException(MethodArgumentNotValidException ex){
-        var bindingResult = ex.getBindingResult();
-        return new ApiErros(bindingResult);
-    }
-
-
-    @ExceptionHandler(BusinessException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiErros handleBusinessException(BusinessException ex){
-        return new ApiErros(ex);
-    }
 
 }
