@@ -47,7 +47,7 @@ public class BookRepositoryTest {
     public void returnFalseWhenIsbnDosentExists(){
         var isbn = "123";
         var exists = repository.existsByIsbn(isbn);
-        assertThat(exists).isTrue();
+        assertThat(exists).isFalse();
 
     }
 
