@@ -1,0 +1,16 @@
+package com.example.librarywithmockito.service;
+
+import com.example.librarywithmockito.model.Book;
+
+import java.util.Optional;
+
+public interface BookService {
+
+    Book save(Book entity);
+
+    Optional<Book> getById(Long id);
+
+    void delete(Book book);
+
+    Book update(Book book);
+}
