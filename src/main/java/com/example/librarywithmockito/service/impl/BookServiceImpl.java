@@ -5,6 +5,10 @@ import com.example.librarywithmockito.model.Book;
 import com.example.librarywithmockito.repository.BookRepository;
 import com.example.librarywithmockito.service.BookService;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -39,6 +43,18 @@ public class BookServiceImpl implements BookService {
             throw new IllegalArgumentException("Book id cant be null");
         }
         return bookRepository.save(book);
+    }
+
+    @Override
+    public Page<Book> find(Book filter, Pageable pageRequest) {
+        Example<Book> example = Example.of(filter,
+                ExampleMatcher
+                        .matching()
+                        .withIgnoreCase()
+                        .withIgnoreNullValues()
+                        .withStringMatcher( ExampleMatcher.StringMatcher.CONTAINING )
+        ) ;
+        return bookRepository.findAll(example, pageRequest);
     }
 
     @Override
