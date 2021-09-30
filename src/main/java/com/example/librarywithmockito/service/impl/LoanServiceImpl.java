@@ -1,5 +1,6 @@
 package com.example.librarywithmockito.service.impl;
 
+import com.example.librarywithmockito.api.resource.dto.LoanFilterDTO;
 import com.example.librarywithmockito.exception.BusinessException;
 import com.example.librarywithmockito.model.Book;
 import com.example.librarywithmockito.model.Loan;
@@ -50,5 +51,10 @@ public class LoanServiceImpl implements LoanService {
         final Integer loanDays = 4;
         LocalDate threeDaysAgo = LocalDate.now().minusDays(loanDays);
         return repository.findByLoanDateLessThanAndNotReturned(threeDaysAgo);
+    }
+
+    @Override
+    public Page<Loan> find(LoanFilterDTO dto, Pageable pageRequest) {
+        return repository.findByBookIsbnOrCustomer( dto.getIsbn(), dto.getCustomer(), pageRequest );
     }
 }

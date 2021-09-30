@@ -1,5 +1,6 @@
 package com.example.librarywithmockito.service;
 
+import com.example.librarywithmockito.api.resource.dto.LoanFilterDTO;
 import com.example.librarywithmockito.model.Book;
 import com.example.librarywithmockito.model.Loan;
 import org.springframework.data.domain.Page;
@@ -18,4 +19,6 @@ public interface LoanService {
     Page<Loan> getLoansByBook(Book book, Pageable pageable);
 
     List<Loan> getAllLateLoans();
+
+    Page<Loan> find(LoanFilterDTO dto, Pageable pageRequest);
 }

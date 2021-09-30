@@ -23,14 +23,17 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/books")
-@RequiredArgsConstructor
 public class BookController {
 
     private BookService bookService;
     private ModelMapper mapper;
     private LoanService loanService;
 
-
+    public BookController(BookService bookService, ModelMapper mapper, LoanService loanService) {
+        this.bookService = bookService;
+        this.mapper = mapper;
+        this.loanService = loanService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
